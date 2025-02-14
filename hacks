@@ -1,0 +1,74 @@
+import os
+import sys
+
+def clear():
+    os.system('clear')
+
+def nmap_scan():
+    print("\n--- Nmap Network Scan ---")
+    target = input("Enter target IP or domain: ")
+    os.system(f"nmap -sS {target}")
+
+def hydra_bruteforce():
+    print("\n--- Hydra Bruteforce Attack ---")
+    target = input("Enter target IP or domain: ")
+    service = input("Enter service (ssh, ftp, http, etc.): ")
+    username = input("Enter username: ")
+    wordlist = input("Enter path to wordlist (e.g., /usr/share/wordlists/rockyou.txt): ")
+    os.system(f"hydra -l {username} -P {wordlist} {target} {service}")
+
+def aircrack_ng():
+    print("\n--- Aircrack-ng WiFi Cracking ---")
+    interface = input("Enter the wireless interface (e.g., wlan0): ")
+    capture_file = input("Enter the path to the capture file (e.g., test.cap): ")
+    password_list = input("Enter path to the password list: ")
+    os.system(f"aircrack-ng -w {password_list} {capture_file}")
+
+def wireshark_capture():
+    print("\n--- Wireshark Network Packet Capture ---")
+    interface = input("Enter the network interface (e.g., eth0, wlan0): ")
+    os.system(f"sudo wireshark -i {interface}")
+
+def nikto_scan():
+    print("\n--- Nikto Web Vulnerability Scan ---")
+    url = input("Enter the target URL (e.g., http://example.com): ")
+    os.system(f"nikto -h {url}")
+
+def metasploit_exploit():
+    print("\n--- Metasploit Exploitation ---")
+    print("Starting Metasploit Framework...")
+    os.system("msfconsole")
+
+def main_menu():
+    while True:
+        clear()
+        print("\nWelcome to the Penetration Testing Toolkit!")
+        print("1. Run Nmap Scan")
+        print("2. Run Hydra Brute-Force Attack")
+        print("3. Crack WiFi Password using Aircrack-ng")
+        print("4. Capture Packets using Wireshark")
+        print("5. Scan Web Vulnerabilities with Nikto")
+        print("6. Start Metasploit")
+        print("7. Exit")
+        choice = input("\nSelect an option: ")
+
+        if choice == '1':
+            nmap_scan()
+        elif choice == '2':
+            hydra_bruteforce()
+        elif choice == '3':
+            aircrack_ng()
+        elif choice == '4':
+            wireshark_capture()
+        elif choice == '5':
+            nikto_scan()
+        elif choice == '6':
+            metasploit_exploit()
+        elif choice == '7':
+            print("Exiting... Goodbye!")
+            sys.exit()
+        else:
+            print("Invalid choice! Please select a valid option.")
+
+if __name__ == "__main__":
+    main_menu()
